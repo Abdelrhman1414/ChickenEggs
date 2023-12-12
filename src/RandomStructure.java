@@ -47,7 +47,7 @@ public class RandomStructure extends AnimGLEventListener3 {
 
 
                 }
-                if (yEggs[2] < 10) {
+                if (yEggs[2] < 8) {
                     run = false;
                 }
             }
@@ -97,7 +97,7 @@ public class RandomStructure extends AnimGLEventListener3 {
 
 
                 }
-                if (yEggs[2] < 10) {
+                if (yEggs[2] < 8) {
                     run = false;
                 }
             }
@@ -146,7 +146,7 @@ public class RandomStructure extends AnimGLEventListener3 {
 
 
                 }
-                if (yEggs[2] < 10) {
+                if (yEggs[2] < 8) {
                     run = false;
                 }
             }
@@ -207,7 +207,7 @@ public class RandomStructure extends AnimGLEventListener3 {
 
 
                 }
-                if (yEggs_multi[5] < 10&&yEggs_multi[2]<10) {
+                if (yEggs_multi[5] < 8&&yEggs_multi[2]<8) {
                     runMulti = false;
                 }
             }
