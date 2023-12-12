@@ -120,7 +120,7 @@ public class RandomStructure extends AnimGLEventListener3 {
             }
             numOfEggs[0] = new Eggs(xEggs[randomSingle0], yEggs[0]);
             numOfEggs[0].drawEgg(gl, 0.8f, textures);
-            yEggs[0]-=24;
+            yEggs[0]-=4;
             if (numOfEggs[0].yEgg < 20) {
                 if (!flags[0]) {
                     randomSingle1 = (int) (Math.random() * 3);
