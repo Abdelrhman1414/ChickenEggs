@@ -12,7 +12,7 @@ public class RandomStructure extends AnimGLEventListener3 {
     static boolean[] flags = new boolean[2];
     static  int[] xEggs = {20, 45, 70};
     static  int[] yEggs = {65, 65, 65};
-   static int randomSingle0, randomSingle1, randomSingle2,randomMulti0,randomMulti1,randomMulti2,randomMulti3,randomMulti4,randomMulti5;
+   static int randomSingle0, randomSingle1, randomSingle2,randomMulti0,randomMulti1,randomMulti2,randomMulti3,randomMulti4,randomMulti5,counter;
     public void RandomStructure_Single_Easy(GL gl) {
         if (run) {
             if (flagRandom) {
@@ -161,10 +161,10 @@ public class RandomStructure extends AnimGLEventListener3 {
         }
     }
 
-    public void RandomStructure_MultiPlayer(GL gl) {
+   public void RandomStructure_MultiPlayer(GL gl) {
         if (runMulti) {
-            if (flagRandom_multi&&flagRandom_multi2) {
-                randomMulti0=randomGet_multi2();
+            if (flagRandom_multi && flagRandom_multi2) {
+                randomMulti0 = randomGet_multi2();
                 randomMulti3 = randomGet_multi();
             }
             numOfEggs_multi[0] = new Eggs(xEggs_multi[randomMulti0], yEggs_multi[0]);
@@ -172,27 +172,42 @@ public class RandomStructure extends AnimGLEventListener3 {
             //   System.out.println(numOfEggs_multi[3].yEgg+" "+numOfEggs_multi[3].xEgg);
             numOfEggs_multi[0].drawEgg(gl, 0.5f, textures);
             numOfEggs_multi[3].drawEgg(gl, 0.5f, textures);
+            if(counter<1000){
             yEggs_multi[0]--;
-            yEggs_multi[3]--;
-            if (numOfEggs_multi[0].yEgg < 20 &&numOfEggs_multi[3].yEgg < 20) {
-                if (!flags_multi[2]&&!flags_multi[0]) {
+            yEggs_multi[3]--; }
+            if(counter>1000&&counter<2000){
+                yEggs_multi[0]-=2;
+                yEggs_multi[3]-=2; }
+            if(counter>2000){
+                yEggs_multi[0]-=4;
+                yEggs_multi[3]-=4; }
 
-                    randomMulti4 = (int) (Math.random() * 3)+3;
-                    randomMulti1=(int) (Math.random()*3);
-                    flags_multi[0]=true;
+
+            if (numOfEggs_multi[0].yEgg < 20 && numOfEggs_multi[3].yEgg < 20) {
+                if (!flags_multi[2] && !flags_multi[0]) {
+
+                    randomMulti4 = (int) (Math.random() * 3) + 3;
+                    randomMulti1 = (int) (Math.random() * 3);
+                    flags_multi[0] = true;
                     flags_multi[2] = true;
                 }
                 numOfEggs_multi[1] = new Eggs(xEggs_multi[randomMulti1], yEggs_multi[1]);
                 numOfEggs_multi[4] = new Eggs(xEggs_multi[randomMulti4], yEggs_multi[4]);
-                numOfEggs_multi[1].drawEgg(gl,0.5f,textures);
+                numOfEggs_multi[1].drawEgg(gl, 0.5f, textures);
                 numOfEggs_multi[4].drawEgg(gl, 0.5f, textures);
-                yEggs_multi[1]--;
-                yEggs_multi[4]--;
-
-                if (numOfEggs_multi[1].yEgg < 40&&numOfEggs_multi[4].yEgg < 40) {
-                    if (!flags_multi[3]&&!flags_multi[1]) {
-                        randomMulti5 = (int) (Math.random() * 3)+3;
-                        randomMulti2=(int) (Math.random()*3);
+                if(counter<1000){
+                    yEggs_multi[1]--;
+                    yEggs_multi[4]--; }
+                if(counter>1000&&counter<2000){
+                    yEggs_multi[1]-=2;
+                    yEggs_multi[4]-=2; }
+                if(counter>2000){
+                    yEggs_multi[1]-=4;
+                    yEggs_multi[4]-=4; }
+                if (numOfEggs_multi[1].yEgg < 40 && numOfEggs_multi[4].yEgg < 40) {
+                    if (!flags_multi[3] && !flags_multi[1]) {
+                        randomMulti5 = (int) (Math.random() * 3) + 3;
+                        randomMulti2 = (int) (Math.random() * 3);
                         flags_multi[1] = true;
 
                         flags_multi[3] = true;
@@ -200,35 +215,41 @@ public class RandomStructure extends AnimGLEventListener3 {
                     }
                     numOfEggs_multi[2] = new Eggs(xEggs_multi[randomMulti2], yEggs_multi[5]);
                     numOfEggs_multi[2].drawEgg(gl, 0.5f, textures);
-                    yEggs_multi[2]--;
                     numOfEggs_multi[5] = new Eggs(xEggs_multi[randomMulti5], yEggs_multi[5]);
                     numOfEggs_multi[5].drawEgg(gl, 0.5f, textures);
-                    yEggs_multi[5]--;
-
+                    if(counter<1000){
+                        yEggs_multi[2]--;
+                        yEggs_multi[5]--; }
+                    if(counter>1000&&counter<2000){
+                        yEggs_multi[2]-=2;
+                        yEggs_multi[5]-=2; }
+                    if(counter>2000){
+                        yEggs_multi[2]-=4;
+                        yEggs_multi[5]-=4; }
 
                 }
-                if (yEggs_multi[5] < 8&&yEggs_multi[2]<8) {
+                if (yEggs_multi[5] < 7 && yEggs_multi[2] < 7) {
                     runMulti = false;
                 }
+
             }
+            counter+=2;
 
         }
-        if(!runMulti){
+        if (!runMulti) {
             Arrays.fill(numOfEggs_multi, null);
 
-            Arrays.fill(flags_multi,false);
+            Arrays.fill(flags_multi, false);
             runMulti = true;
-            Arrays.fill(yEggs_multi,65);
-            flagRandom_multi =true;
-            flagRandom_multi2=true;
+            Arrays.fill(yEggs_multi, 65);
+            flagRandom_multi = true;
+            flagRandom_multi2 = true;
 
         }
         //  collusionMulti();
 
 
     }
-
-
     public int randomGet_Single() {
         flagRandom = false;
         return (int) (Math.random() * 3);
